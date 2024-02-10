@@ -9,6 +9,9 @@
 #include <avr/io.h>
 #include <util/delay.h>
 
+void initStepper() {
+	DDRB |= 0b00001111; // Set útgang 8,9,10,11
+}
 
 void stepper_rs(int speed) {
 
