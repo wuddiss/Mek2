@@ -12,10 +12,10 @@ void initLED() {
 	DDRB |= 0b00100000; // Set LED sem útgang 13
 }
 
-void LED_on() {
+void LED_off() {
 	PORTB &= ~0b00100000; // LED útgangur 13 á
 }
 
-void LED_off() {
+void LED_on() {
 	PORTB |= 0b00100000; // LED útgangur 13 aff
 }
