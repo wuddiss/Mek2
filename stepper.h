@@ -7,6 +7,7 @@
 #ifndef STEPPER_H_
 #define STEPPER_H_
 
+void initStepper();
 void stepper_rs(int speed);
 void stepper_ws(int speed);
 
