@@ -8,7 +8,20 @@
 #define STEPPER_H_
 
 void initStepper();
-void stepper_rs(int speed);
-void stepper_ws(int speed);
+
+void steps_wd_fw(int speed, int steps);
+void steps_wd_bw(int speed, int steps);
+void step_wd_fw(int speed);
+void step_wd_bw(int speed);
+
+void step_fsd_fw(int speed);
+void step_fsd_bw(int speed);
+
+void step_hsd_fw(int speed);
+void step_hsd_bw(int speed);
+
+void wave_drive(int step);
+void full_step_drive(int step);
+void half_step_drive(int step);
 
 #endif
