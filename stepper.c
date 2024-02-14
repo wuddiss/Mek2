@@ -15,31 +15,31 @@ void initStepper() {
 
 void stepper_rs(int speed) {
 
-	  	PORTB &= ~0b00000001; // LED útgangur 8 á
-	  	PORTB |= 0b00000010; // LED útgangur 9 af
-	  	PORTB &= ~0b00000100; // LED útgangur 10 á
-	  	PORTB |= 0b00001000; // LED útgangur 11 af
-
-	  	_delay_ms(speed);  // Denounce töf
-
-	  	PORTB &= ~0b00000001; // LED útgangur 8 af
-	  	PORTB |= 0b00000010; // LED útgangur 9 a
-	  	PORTB |= 0b00000100; // LED útgangur 10 á
+	  	PORTB |= 0b00000001; // LED útgangur 8 á
+	  	PORTB &= ~0b00000010; // LED útgangur 9 af
+	  	PORTB &= ~0b00000100; // LED útgangur 10 af
 	  	PORTB &= ~0b00001000; // LED útgangur 11 af
 
 	  	_delay_ms(speed);  // Denounce töf
 
-	  	PORTB |= 0b00000001; // LED útgangur 8 af
-	  	PORTB &= ~0b00000010; // LED útgangur 9 a
-	  	PORTB |= 0b00000100; // LED útgangur 10 af
-	  	PORTB &= ~0b00001000; // LED útgangur 11 á
+	  	PORTB &= ~0b00000001; // LED útgangur 8 af
+	    PORTB &= ~0b00000010; // LED útgangur 9 af
+	  	PORTB |= 0b00000100; // LED útgangur 10 a
+	  	PORTB &= ~0b00001000; // LED útgangur 11 af
 
 	  	_delay_ms(speed);  // Denounce töf
 
-	  	PORTB |= 0b00000001; // LED útgangur 8 á
-	  	PORTB &= ~0b00000010; // LED útgangur 9 af
+	  	PORTB &= ~0b00000001; // LED útgangur 8 af
+	    PORTB |= 0b00000010; // LED útgangur 9 a
 	  	PORTB &= ~0b00000100; // LED útgangur 10 af
-	  	PORTB |= 0b00001000; // LED útgangur 11 á
+	  	PORTB &= ~0b00001000; // LED útgangur 11 af
+
+	  	_delay_ms(speed);  // Denounce töf
+
+	  	PORTB &= ~0b00000001; // LED útgangur 8 af
+	    PORTB &= ~0b00000010; // LED útgangur 9 af
+	    PORTB &= ~0b00000100; // LED útgangur 10 af
+	  	PORTB |= 0b00001000; // LED útgangur 11 a
 
 	  	_delay_ms(speed);  // Denounce töf
 	}
@@ -74,4 +74,5 @@ void stepper_ws(int speed) {
 
 	  	_delay_ms(speed);  // Denounce töf
 	}
+
 
