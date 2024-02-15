@@ -13,6 +13,31 @@ void initStepper() {
 	DDRB |= 0b00001111; // Set útgang 8,9,10,11
 }
 
+
+int steps_fsd_fw(int speed, int steps, int current_step) { // Hringur er 50 step
+	int step = 0;
+	if (current_step >= 3)
+		step = 0;
+	else
+		step = current_step + 1;
+	
+	for (int i = 0; i < steps; i++) {
+		full_step_drive(step);
+		_delay_ms(speed);  // Denounce töf
+		if (step == 3)
+			step = 0;
+		else
+			step += 1;
+	}
+	return step;
+}
+
+void steps_fsd_bw(int speed, int steps) { // Hringur er 50 step
+	for (int i = 0; i < steps; i++) {
+		step_fsd_bw(speed);
+	}
+}
+
 void steps_wd_fw(int speed, int steps) { // Hringur er 50 step
 	for (int i = 0; i < steps; i++) {
 		step_wd_fw(speed);
