@@ -109,7 +109,7 @@ void Init_Uart()
 void tx(int cData)
 {
    while (!(UCSR0A&(1<<UDRE0)));
-    // pu t da ta i n t o b u f f e r
+    // put data into buffer
     UDR0=cData;
 }
 
