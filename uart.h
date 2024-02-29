@@ -32,4 +32,26 @@ void tx(int cData);
 
 int rx();
 
+void UART_Transmit_Nibble_Hex(unsigned char data);
+
+void Transmit_Byte_Hex(unsigned char data);
+
+void Transmit_int_Hex(unsigned int data);
+
+void Transmit_long_Hex(unsigned long data);
+
+void UART_Transmit_Byte_Hex(unsigned char data);
+
+void UART_Transmit_int_Hex(unsigned int data);
+
+void UART_Transmit_long_Hex(unsigned long data);
+
+void UART_Transmit_long_Decimal(unsigned long num);
+
+void UART_Transmit_int_Decimal(unsigned int num);
+
+void UART_Transmit_Byte_Decimal(unsigned char num);
+
+void UART_Transmit_String(char s[]);
+
 #endif /* UART_H_ */
