@@ -131,8 +131,124 @@ int recive_tx()
    while (!(UCSR0A&(1<<UDRE0)));
     // pu t da ta i n t o b u f f e r
     UDR0=cData;
- 
+
+
    return cData;
 }
 
+void UART_Transmit_Nibble_Hex(unsigned char data)
+ {
+ unsigned char c;
+ c = ' ';
+ data = data & 0x0F;
+ if ((data >= 0) && (data < 10))
+ c = '0' + data;
+ if ((data>=10) && (data <= 15))
+ c='A'+(data-10);
+ tx(c);
+ }
 
+void Transmit_Byte_Hex(unsigned char data)
+{
+  UART_Transmit_Nibble_Hex(data >> 4);
+  UART_Transmit_Nibble_Hex(data & 0x0F);
+}
+
+void Transmit_int_Hex(unsigned int data)
+{
+  Transmit_Byte_Hex(data >> 8);
+  Transmit_Byte_Hex(data & 0xFF);
+}
+
+void Transmit_long_Hex(unsigned long data)
+{
+  Transmit_int_Hex(data >> 16);
+  Transmit_int_Hex(data & 0xFFFFFFFF);
+}
+
+void UART_Transmit_Byte_Hex(unsigned char data)
+{
+	tx('0');
+	tx('x');
+	Transmit_Byte_Hex(data);
+}
+
+void UART_Transmit_int_Hex(unsigned int data)
+{
+	tx('0');
+	tx('x');
+	Transmit_int_Hex(data);
+}
+
+void UART_Transmit_long_Hex(unsigned long data)
+{
+	tx('0');
+	tx('x');
+	Transmit_long_Hex(data);
+}
+
+void UART_Transmit_long_Decimal(unsigned long num) {
+	unsigned long digit;
+	unsigned long reversedNum = 0;
+
+    // Reverse the number
+    while (num != 0) {
+        digit = num % 10;
+        reversedNum = reversedNum * 10 + digit;
+        num /= 10;
+    }
+
+    // Extract digits
+    while (reversedNum != 0) {
+        digit = reversedNum % 10;
+        UART_Transmit_Nibble_Hex(digit);
+        reversedNum /= 10;
+    }
+}
+
+void UART_Transmit_int_Decimal(unsigned int num) {
+	unsigned int digit;
+	unsigned int reversedNum = 0;
+
+    // Reverse the number
+    while (num != 0) {
+        digit = num % 10;
+        reversedNum = reversedNum * 10 + digit;
+        num /= 10;
+    }
+
+    // Extract digits
+    while (reversedNum != 0) {
+        digit = reversedNum % 10;
+        UART_Transmit_Nibble_Hex(digit);
+        reversedNum /= 10;
+    }
+}
+
+void UART_Transmit_Byte_Decimal(unsigned char num) {
+	unsigned char digit;
+	unsigned char reversedNum = 0;
+
+    // Reverse the number
+    while (num != 0) {
+        digit = num % 10;
+        reversedNum = reversedNum * 10 + digit;
+        num /= 10;
+    }
+
+    // Extract digits
+    while (reversedNum != 0) {
+        digit = reversedNum % 10;
+        UART_Transmit_Nibble_Hex(digit);
+        reversedNum /= 10;
+    }
+}
+
+void UART_Transmit_String(char s[]) {
+ char cIndex = 0;
+ while(s[cIndex] != 0)
+ {
+    tx(s[cIndex]);
+    cIndex++;
+ }
+}
