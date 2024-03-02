@@ -13,12 +13,14 @@ int main()
 	DDRB |= (1 << PB5);   // Set PB5 as output
 
 	int counter = 0;
+	char string[16];
 	char t[] = "Button Push nr. #";
 	char nl[] = "\n\r";
 	// Variable to track button state
 	uint8_t button_pressed = 0;
 	while(1) {
 		if (isButtonPressed()){
+			delay_ms(100);
 			// Button is pressed
 			// Check if the button was not pressed previously
 			if (!button_pressed) {
@@ -26,13 +28,11 @@ int main()
 				PORTB ^= (1 << LED_PIN);
 				counter++;
 				UART_Transmit_String(t);
-				char b[counter];
-				UART_itoa(1, b);
-				UART_Transmit_String(b);
+				UART_itoa(counter, string);
+				UART_Transmit_String(string);
 				UART_Transmit_String(nl);
 				// Set button state to pressed
 				button_pressed = 1;
-				delay_ms(20);
 				}
 			}
 			else {
